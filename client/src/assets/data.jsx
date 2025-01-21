@@ -49,52 +49,52 @@ import {
 import { AiFillCar } from "react-icons/ai";
 
 export const categories = [
-  {
+  { id:1,
     label: "All",
     icon: <BiWorld />,
     color: "#bfdbfe", // blue-200
   },
-  {
+  { id:2,
     label: "Urban Area",
     icon: <MdOutlineVilla />,
     color: "#ffe4b5", // light beige
   },
-  {
+  { id:3,
     label: "Seaside",
     icon: <TbBeach />,
     color: "#e9d5ff", // purple-200
   },
-  {
+  { id:4,
     label: "Wind Farm",
     icon: <GiWindmill />,
     color: "#d1fae5", // green-200
   },
-  {
+  { id:5,
     label: "Rural Area",
     icon: <TbMountain />,
     color: "#ccfbf1", // teal-200
   },
-  {
+  { id:6,
     label: "Desert Retreat",
     icon: <GiCactus />, // Example icon
     color: "#e5e7eb", // gray-200
   },
-  {
+  { id:7,
     label: "Private Island",
     icon: <GiIsland />,
     color: "#e0e7ff", // indigo-200
   },
-  {
+  { id:8,
     label: "Ski Resorts",
     icon: <FaSkiing />,
     color: "#fef3c7", // yellow-200
   },
-  {
+  { id:9,
     label: "Luxury Pools",
     icon: <TbPool />,
     color: "#cffafe", // cyan-200
   },
-  {
+  { id:10,
     label: "Lakeside",
     icon: <GiBoatFishing />,
     color: "#bfdbfe", // blue-200
