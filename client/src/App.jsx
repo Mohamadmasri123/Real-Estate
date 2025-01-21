@@ -10,9 +10,7 @@ import Register from "./pages/Register";
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="*" element={<Navigate to ="/"/>}  />
+
       </Routes>
     </Router>
   );
