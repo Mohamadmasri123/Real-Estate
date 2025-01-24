@@ -17,6 +17,8 @@ const Footer = () => {
         <h1 className=' text-white bold-18'>Lease <span className=' text-violet-400'>lodge</span> </h1>
         <p className=' mt-4'>Find your perfect home or investment property with us . we offer a seamiess, trusted real estate experience . </p>
         <p className='mt-2'>@ 2024 Leaselodge . All right reseved.</p>
+        <p className='mt-2 '>MADE BY  : <span className='text-violet-400'> Mohamad Masri</span></p>
+
         </div>
       <div className=' flex flex-col'>
         <h1 className=' text-white bold-18'>Quick links </h1>
