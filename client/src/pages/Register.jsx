@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import { FaDownload } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { use } from "react";
 
 const Register = () => {
+  const navigate = useNavigate();
+  const [passwordMatch, setPasswordMatch] = useState(true);
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -22,12 +26,39 @@ const Register = () => {
     });
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const register_form = new FormData();
+      for (var key in formData) {
+        register_form.append(key, formData[key]);
+      }
+      const response = await fetch("http://localhost:4000/auth/register", {
+        method: "POST",
+        body: register_form,
+      });
+      if (response.ok) {
+        navigate("/login");
+      }
+    } catch (err) {
+      console.log("Register Error", err.message);
+    }
+  };
+  useEffect(() => {
+    setPasswordMatch(
+      formData.password === formData.confirmPassword ||
+        formData.confirmPassword === ""
+    );
+  }, [formData.password, formData.confirmPassword]);
+
   return (
     <div className="w-screen h-screen overflow-hidden">
       <Header />
       <div className="bg-white rounded-md border w-80 mx-auto">
         <div>
-          <form className="flex flex-col gap-y-3 mx-10">
+          <form
+           onSubmit={handleSubmit}
+            className="flex flex-col gap-y-3 mx-10" encType="multipart/form-data">
             <h1 className="bold-22 mt-2 ml-10">Sign Up</h1>
             <input
               onChange={handleChange}
@@ -69,6 +100,8 @@ const Register = () => {
               placeholder="Confirm Password"
               className="border bg-white rounded-md p-2 text-slate-900"
             />
+
+            {!passwordMatch && <p>Passwords do not match</p>}
             <input
               onChange={handleChange}
               type="file"
