@@ -1,5 +1,4 @@
 import express from "express";
-import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import multer from "multer";
 import User from "../models/User.js";
@@ -15,6 +14,8 @@ const storage = multer.diskStorage({
   },
 });
 const upload = multer({ storage: storage });
+
+//user register
 
 router.post("/register", upload.single("profileImage"), async (req, res) => {
   try {
@@ -45,6 +46,35 @@ router.post("/register", upload.single("profileImage"), async (req, res) => {
     res.status(500).json({ message: "Registration failed", error: err.message });
 
   }
+
+
+
+
 });
 
+//user login
+router.post("/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user=await user.findOne({email})
+    if(!user){
+      return res.status(404).json({message:"User not found"});
+    } 
+    const isMatch =await compare(password,user.password);
+    if(!isMatch){
+      return res.status(400).json({message:"Invalid credentials"});
+    }
+    const token = jwt.sign({id:user._id},process.env.JWT_SECRET);   
+    delete user.password;     
+    res.status(200).json({token,user}); 
+
+  } catch (err) {
+    console.log(err)
+    res.status(500).json({message:"Login failed",error:err.message});                               
+
+  }
+
+
+
+});
 export default router ;
